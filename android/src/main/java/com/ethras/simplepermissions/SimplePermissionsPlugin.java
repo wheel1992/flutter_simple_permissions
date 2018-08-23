@@ -98,6 +98,9 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
             case "READ_EXTERNAL_STORAGE":
                 res = Manifest.permission.READ_EXTERNAL_STORAGE;
                 break;
+            case "READ_PHONE_STATE":
+                res = Manifest.permission.READ_PHONE_STATE;
+                break;
             case "ACCESS_FINE_LOCATION":
                 res = Manifest.permission.ACCESS_FINE_LOCATION;
                 break;
