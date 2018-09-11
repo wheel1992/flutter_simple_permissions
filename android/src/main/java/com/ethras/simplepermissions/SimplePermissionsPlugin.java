@@ -21,6 +21,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
  * SimplePermissionsPlugin
  */
 public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistry.RequestPermissionsResultListener {
+    private final int REQUEST_CODE = 10;
     private Registrar registrar;
     private Result result;
 
@@ -136,7 +137,7 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
         permission = getManifestPermission(permission);
         Log.i("SimplePermission", "Requesting permission : " + permission);
         String[] perm = {permission};
-        ActivityCompat.requestPermissions(activity, perm, 0);
+        ActivityCompat.requestPermissions(activity, perm, REQUEST_CODE);
     }
 
     private boolean checkPermission(String permission) {
@@ -149,7 +150,7 @@ public class SimplePermissionsPlugin implements MethodCallHandler, PluginRegistr
     @Override
     public boolean onRequestPermissionsResult(int requestCode, String[] strings, int[] grantResults) {
         boolean res = false;
-        if (requestCode == 0 && grantResults.length > 0) {
+        if (requestCode == REQUEST_CODE && grantResults.length > 0) {
             res = grantResults[0] == PackageManager.PERMISSION_GRANTED;
             Log.i("SimplePermission", "Requesting permission result : " + res);
             result.success(res);
